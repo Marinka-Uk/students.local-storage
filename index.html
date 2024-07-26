@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- <form class="feedback-form js-feedback-form">
+        <label>
+        <b>Ім'я</b>
+        <input
+        type="text"
+        name="name"
+        placeholder="Введите ваше имя"
+        value="Анонім"
+        />
+        </label>
+        <label>
+        <b>Повідомлення</b>
+        <textarea name="message" rows="6"></textarea>
+        </label>
+        <button type="submit">Залишити відгук</button>
+        </form> -->
+
+
+
+
+<div class="container mt-5">
+    <h1>Student Management</h1>
+    <form id="studentForm">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" name="age" required>
+        </div>
+        <div class="form-group">
+            <label for="course">Course</label>
+            <input type="text" class="form-control" name="course" required>
+        </div>
+        <div class="form-group">
+            <label for="faculty">Faculty</label>
+            <input type="text" class="form-control" name="faculty" required>
+        </div>
+        <div class="form-group">
+            <label for="courseList">Courses</label>
+            <input type="text" class="form-control" name="courseList" placeholder="Comma separated list of courses"
+                required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Student</button>
+    </form>
+    <h2 class="mt-5">Students List</h2>
+    <table class="table" id="studentsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Course</th>
+                <th>Faculty</th>
+                <th>Courses</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
