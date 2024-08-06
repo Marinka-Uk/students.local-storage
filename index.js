@@ -20,6 +20,10 @@
 // }
 
 console.log('hello');
+const studentsFromStorage = localStorage.getItem('students');
+let parsedStudents = JSON.parse(studentsFromStorage);
+createStudentsMurkup(parsedStudents);
+console.log(studentsFromStorage);
 const studentForm = document.getElementById('studentForm');
 const studentsTableBody = document.getElementById('studentsTable').querySelector('tbody');
 const students = [ ]
@@ -29,7 +33,7 @@ const form = e.currentTarget
     const student = {
         id: Date.now(),
         firstName: form.elements.firstName.value,
-        lastname: form.elements.lastName.value,
+        lastName: form.elements.lastName.value,
         age: form.elements.age.value,
         course: form.elements.course.value,
         faculty: form.elements.faculty.value
@@ -40,7 +44,17 @@ const form = e.currentTarget
 
     form.reset();
     
-   const studentsMarkup = students.map((student) => {
+
+    createStudentsMurkup(students)
+    
+});
+
+
+
+
+function createStudentsMurkup(students) {
+    const studentsMarkup = students.map((student) => {
+        console.log(student.lastName);
         return `
 <tr>
 <td>${student.id}</td>
@@ -49,13 +63,21 @@ const form = e.currentTarget
 <td>${student.age}</td>
 <td>${student.course}</td>
 <td>${student.faculty}</td>
-<td>${student.courses.join(', ')}</td>
 <td>
 <button class="btn btn-warning btn-sm" onclick="editStudent(${student.id})">Edit</button>
 <button class="btn btn-danger btn-sm" onclick="deleteStudent(${student.id})">Delete</button>
 </td>
 </tr>
 `
-   }).join()
-    
-});
+    }).join()
+    studentsTableBody.insertAdjacentHTML("beforeend", studentsMarkup)
+}
+
+
+
+
+
+
+// 1 - Написати код який буде зчитувати дані з localStorage при перезавантажені 
+//сторінки та зберігати відмальований список студентів з попереднього завантаженя
+// 2 - реалізувати видалення студента
