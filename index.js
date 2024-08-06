@@ -18,15 +18,16 @@
 //     const message = localStorage.getItem('message')
     
 // }
-
-console.log('hello');
-const studentsFromStorage = localStorage.getItem('students');
-let parsedStudents = JSON.parse(studentsFromStorage);
-createStudentsMurkup(parsedStudents);
-console.log(studentsFromStorage);
 const studentForm = document.getElementById('studentForm');
 const studentsTableBody = document.getElementById('studentsTable').querySelector('tbody');
-const students = [ ]
+
+
+const students = localStorage.getItem('students');
+console.log(students);
+const parsedStudents = students ? JSON.parse(students): []
+createStudentsMurkup(parsedStudents);
+console.log(students);
+
 studentForm.addEventListener('submit', (e) => {
     e.preventDefault();
 const form = e.currentTarget
@@ -39,13 +40,13 @@ const form = e.currentTarget
         faculty: form.elements.faculty.value
     }
     console.log(student);
-    students.push(student)
-    localStorage.setItem('students', JSON.stringify(students))
+    parsedStudents.push(student)
+    localStorage.setItem('students', JSON.stringify(parsedStudents))
 
     form.reset();
     
 
-    createStudentsMurkup(students)
+    createStudentsMurkup(parsedStudents)
     
 });
 
@@ -53,6 +54,7 @@ const form = e.currentTarget
 
 
 function createStudentsMurkup(students) {
+    console.log(students);
     const studentsMarkup = students.map((student) => {
         console.log(student.lastName);
         return `
@@ -75,9 +77,4 @@ function createStudentsMurkup(students) {
 
 
 
-
-
-
-// 1 - Написати код який буде зчитувати дані з localStorage при перезавантажені 
-//сторінки та зберігати відмальований список студентів з попереднього завантаженя
 // 2 - реалізувати видалення студента
