@@ -76,5 +76,43 @@ function createStudentsMurkup(students) {
 }
 
 
+function deleteStudent(studentId) {
+  
+    const studentIndex = parsedStudents.findIndex(student => student.id === studentId);
+    
+    if (studentIndex !== -1) {
+        parsedStudents.splice(studentIndex, 1);
+    
+        localStorage.setItem('students', JSON.stringify(parsedStudents));
+        
+        updateStudentsTable();
+    }
+}
 
-// 2 - реалізувати видалення студента
+function updateStudentsTable() {
+    
+    studentsTableBody.innerHTML = '';
+    
+    createStudentsMurkup(parsedStudents);
+}
+
+
+function createStudentsMurkup(students) {
+    const studentsMarkup = students.map((student) => {
+        return `
+<tr>
+<td>${student.id}</td>
+<td>${student.firstName}</td>
+<td>${student.lastName}</td>
+<td>${student.age}</td>
+<td>${student.course}</td>
+<td>${student.faculty}</td>
+<td>
+<button class="btn btn-warning btn-sm" onclick="editStudent(${student.id})">Edit</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(${student.id})">Delete</button>
+</td>
+</tr>
+`;
+    }).join('');
+    studentsTableBody.innerHTML = studentsMarkup;
+}
